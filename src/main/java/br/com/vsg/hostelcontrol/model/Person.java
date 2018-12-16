@@ -2,25 +2,32 @@ package br.com.vsg.hostelcontrol.model;
 
 import java.time.LocalDate;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 import org.springframework.data.annotation.Id;
 
 public abstract class Person {
 
 	@Id
-	private int id;
+	private String id;
+	@NotBlank
 	private String name;
+	@NotBlank
 	private String surname;
+	@NotNull
 	private Address address;
 	private String passport;
-	private int cpf;
+	private String cpf;
+	@NotBlank
 	private String email;
 	private LocalDate birthday;
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId( int id ) {
+	public void setId( String id ) {
 		this.id = id;
 	}
 
@@ -56,11 +63,11 @@ public abstract class Person {
 		this.passport = passport;
 	}
 
-	public int getCpf() {
+	public String getCpf() {
 		return cpf;
 	}
 
-	public void setCpf( int cpf ) {
+	public void setCpf( String cpf ) {
 		this.cpf = cpf;
 	}
 
