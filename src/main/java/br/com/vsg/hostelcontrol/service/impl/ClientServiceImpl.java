@@ -47,7 +47,7 @@ public class ClientServiceImpl implements ClientService {
 		return repository.findByName( name );
 	}
 
-	//TODO: implement pagination
+	// TODO: implement pagination
 	@Override
 	public List<Client> getAll() {
 		return repository.findAll();

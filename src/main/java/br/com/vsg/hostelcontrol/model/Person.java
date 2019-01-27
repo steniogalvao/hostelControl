@@ -6,6 +6,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 
 public abstract class Person {
 
@@ -16,6 +17,7 @@ public abstract class Person {
 	@NotBlank
 	private String surname;
 	@NotNull
+	@DBRef
 	private Address address;
 	private String passport;
 	private String cpf;

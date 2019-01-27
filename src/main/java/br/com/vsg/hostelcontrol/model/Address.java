@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Address {
 
 	@Id
-	private int Id;
+	private String Id;
 	private String country;
 	private String state;
 	private String city;
@@ -17,11 +17,11 @@ public class Address {
 	private String complement;
 	private int zipcode;
 
-	public int getId() {
+	public String getId() {
 		return Id;
 	}
 
-	public void setId( int id ) {
+	public void setId( String id ) {
 		Id = id;
 	}
 
