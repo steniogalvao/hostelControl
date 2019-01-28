@@ -1,13 +1,16 @@
 package br.com.vsg.hostelcontrol.model;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
-@Document
+
+@Entity
 public class Address {
 
+	@GeneratedValue
 	@Id
-	private String Id;
+	private int Id;
 	private String country;
 	private String state;
 	private String city;
@@ -17,11 +20,11 @@ public class Address {
 	private String complement;
 	private int zipcode;
 
-	public String getId() {
+	public int getId() {
 		return Id;
 	}
 
-	public void setId( String id ) {
+	public void setId( int id ) {
 		Id = id;
 	}
 

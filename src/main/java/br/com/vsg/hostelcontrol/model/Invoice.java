@@ -4,14 +4,19 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
-@Document
+
+@Entity
 public class Invoice {
 
 	@Id
+	@GeneratedValue
 	private int id;
+	@OneToMany
 	private List<Bill> bills = new ArrayList<>();
 	private BigDecimal totalValue;
 

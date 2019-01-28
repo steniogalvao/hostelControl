@@ -2,14 +2,21 @@ package br.com.vsg.hostelcontrol.model;
 
 import java.time.LocalDate;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
-@Document
+/**
+ * Occurrences related to some reservation
+ */
+@Entity
 public class DailyReport {
 
 	@Id
+	@GeneratedValue
 	private int id;
+	@OneToOne
 	private Bed bed;
 	private LocalDate day;
 	private String description;

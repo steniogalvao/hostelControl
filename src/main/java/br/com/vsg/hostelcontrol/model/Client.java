@@ -1,17 +1,25 @@
 package br.com.vsg.hostelcontrol.model;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.data.mongodb.core.mapping.Document;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
-@Document
+@Entity
 public class Client extends Person {
 
 	private String ocupation;
-	private Map<String, String> social;
+	@ElementCollection
+	private Map<String, String> social = new HashMap<>();
+	@OneToOne
 	private Invoice invoice;
-	private List<Reservation> reservations;
+	@OneToMany
+	private List<Reservation> reservations = new ArrayList<>();
 
 	public String getOcupation() {
 		return ocupation;

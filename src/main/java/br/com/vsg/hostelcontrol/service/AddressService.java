@@ -4,19 +4,16 @@ import java.util.List;
 
 import br.com.vsg.hostelcontrol.model.Client;
 
-public interface ClientService {
+public interface AddressService {
 
 	Client save( Client client );
 
 	Client update( Client client );
 
-	boolean delete( int id );
+	boolean delete( String id );
 
-	Client get( int id );
-
-	Client getByName( String name );
+	Client get( String id );
 
 	List<Client> getAll();
-
 
 }

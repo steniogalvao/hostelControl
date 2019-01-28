@@ -34,7 +34,7 @@ public class ClientController {
 
 	@GetMapping( value = "/client/{id}" )
 	@ResponseBody
-	public Client get( @PathVariable String id ) {
+	public Client get( @PathVariable int id ) {
 		return clientService.get( id );
 	}
 
@@ -46,7 +46,7 @@ public class ClientController {
 
 	@DeleteMapping( value = "/client/{id}" )
 	@ResponseStatus( value = HttpStatus.OK )
-	public void delete( @PathVariable String id ) {
+	public void delete( @PathVariable int id ) {
 		clientService.delete( id );
 	}
 

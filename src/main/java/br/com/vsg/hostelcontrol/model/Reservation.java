@@ -1,23 +1,32 @@
 package br.com.vsg.hostelcontrol.model;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import br.com.vsg.hostelcontrol.enums.StandartItensEnum;
 
-@Document
+@Entity
 public class Reservation {
 
 	@Id
+	@GeneratedValue
 	private int id;
 	private LocalDateTime arrive;
 	private LocalDateTime departure;
-	private List<DailyReport> dailyReport;
-	private Map<StandartItensEnum, Boolean> responsabilities;
+	@OneToMany
+	private List<DailyReport> dailyReport = new ArrayList<>();
+	@ElementCollection( targetClass = StandartItensEnum.class )
+	@Enumerated( EnumType.STRING )
+	private List<StandartItensEnum> responsabilities = new ArrayList<>();
 	private String travelReason;
 
 	public int getId() {
@@ -52,11 +61,11 @@ public class Reservation {
 		this.dailyReport = dailyReport;
 	}
 
-	public Map<StandartItensEnum, Boolean> getResponsabilities() {
+	public List<StandartItensEnum> getResponsabilities() {
 		return responsabilities;
 	}
 
-	public void setResponsabilities( Map<StandartItensEnum, Boolean> responsabilities ) {
+	public void setResponsabilities( List<StandartItensEnum> responsabilities ) {
 		this.responsabilities = responsabilities;
 	}
 

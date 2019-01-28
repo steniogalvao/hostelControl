@@ -2,22 +2,29 @@ package br.com.vsg.hostelcontrol.model;
 
 import java.time.LocalDate;
 
+import javax.persistence.CascadeType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.MappedSuperclass;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
-
+@Inheritance(strategy = InheritanceType.JOINED)
+@MappedSuperclass
 public abstract class Person {
 
 	@Id
-	private String id;
+	@GeneratedValue
+	private int id;
 	@NotBlank
 	private String name;
 	@NotBlank
 	private String surname;
 	@NotNull
-	@DBRef
+	@OneToOne(cascade = CascadeType.ALL)
 	private Address address;
 	private String passport;
 	private String cpf;
@@ -25,11 +32,11 @@ public abstract class Person {
 	private String email;
 	private LocalDate birthday;
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId( String id ) {
+	public void setId( int id ) {
 		this.id = id;
 	}
 

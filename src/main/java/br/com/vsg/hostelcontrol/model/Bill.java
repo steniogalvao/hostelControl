@@ -2,18 +2,24 @@ package br.com.vsg.hostelcontrol.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
-@Document
+
+@Entity
 public class Bill {
 
 	@Id
+	@GeneratedValue
 	private int id;
 	private LocalDateTime time;
-	private List<ItemBill> itens;
+	@OneToMany
+	private List<ItemBill> itens = new ArrayList<>();
 	private BigDecimal value;
 
 	public int getId() {

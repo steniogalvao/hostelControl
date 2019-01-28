@@ -3,10 +3,12 @@ package br.com.vsg.hostelcontrol.service.impl;
 import java.util.List;
 import java.util.Optional;
 
+import org.assertj.core.util.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.vsg.hostelcontrol.model.Client;
+import br.com.vsg.hostelcontrol.model.Person;
 import br.com.vsg.hostelcontrol.repository.ClientRepository;
 import br.com.vsg.hostelcontrol.service.ClientService;
 
@@ -27,7 +29,7 @@ public class ClientServiceImpl implements ClientService {
 	}
 
 	@Override
-	public boolean delete( String id ) {
+	public boolean delete( int id ) {
 		Client client = get( id );
 		if ( client != null ) {
 			repository.delete( client );
@@ -37,9 +39,9 @@ public class ClientServiceImpl implements ClientService {
 	}
 
 	@Override
-	public Client get( String id ) {
-		Optional<Client> result = repository.findById( id );
-		return result.isPresent() ? result.get() : null;
+	public Client get( int id ) {
+		Optional<Person> result = repository.findById( id );
+		return result.isPresent() ? (Client) result.get() : null;
 	}
 
 	@Override
@@ -50,7 +52,7 @@ public class ClientServiceImpl implements ClientService {
 	// TODO: implement pagination
 	@Override
 	public List<Client> getAll() {
-		return repository.findAll();
+		return Lists.newArrayList((Client) repository.findAll() );
 	}
 
 }

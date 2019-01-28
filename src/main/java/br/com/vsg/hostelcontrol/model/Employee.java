@@ -2,13 +2,16 @@ package br.com.vsg.hostelcontrol.model;
 
 import java.time.LocalDate;
 
-import org.springframework.data.mongodb.core.mapping.Document;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 
 import br.com.vsg.hostelcontrol.enums.EmployeeTypeEnum;
 
-@Document
+@Entity
 public class Employee extends Person {
 
+	@Enumerated( EnumType.STRING )
 	private EmployeeTypeEnum type;
 	private LocalDate startDate;
 

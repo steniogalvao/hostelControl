@@ -2,14 +2,18 @@ package br.com.vsg.hostelcontrol.model;
 
 import java.math.BigDecimal;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
-@Document
+@Entity
 public class ItemBill {
 
+	@GeneratedValue
 	@Id
 	private int id;
+	@OneToOne
 	private Item item;
 	private int amount;
 	private BigDecimal totalValue;
