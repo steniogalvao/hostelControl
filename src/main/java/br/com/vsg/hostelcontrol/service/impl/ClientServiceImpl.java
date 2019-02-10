@@ -23,9 +23,12 @@ public class ClientServiceImpl implements ClientService {
 		return repository.save(client);
 	}
 
+	// TODO: throw not found exception instead null
 	@Override
 	public Client update(Client client) {
-		return repository.save(client);
+		if (get(client.getId()) != null)
+			return repository.save(client);
+		return null;
 	}
 
 	@Override
