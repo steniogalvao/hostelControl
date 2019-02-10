@@ -1,14 +1,14 @@
 package br.com.vsg.hostelcontrol.service.impl;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
-import org.assertj.core.util.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.vsg.hostelcontrol.model.Client;
-import br.com.vsg.hostelcontrol.model.Person;
 import br.com.vsg.hostelcontrol.repository.ClientRepository;
 import br.com.vsg.hostelcontrol.service.ClientService;
 
@@ -19,40 +19,42 @@ public class ClientServiceImpl implements ClientService {
 	private ClientRepository repository;
 
 	@Override
-	public Client save( Client client ) {
-		return repository.save( client );
+	public Client save(Client client) {
+		return repository.save(client);
 	}
 
 	@Override
-	public Client update( Client client ) {
-		return repository.save( client );
+	public Client update(Client client) {
+		return repository.save(client);
 	}
 
 	@Override
-	public boolean delete( int id ) {
-		Client client = get( id );
-		if ( client != null ) {
-			repository.delete( client );
+	public boolean delete(int id) {
+		Client client = get(id);
+		if (client != null) {
+			repository.delete(client);
 			return true;
 		}
 		return false;
 	}
 
 	@Override
-	public Client get( int id ) {
-		Optional<Person> result = repository.findById( id );
+	public Client get(int id) {
+		Optional<Client> result = repository.findById(id);
 		return result.isPresent() ? (Client) result.get() : null;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public Client getByName( String name ) {
-		return repository.findByName( name );
+	public List<Client> nameLike(String name) {
+		return new ArrayList<Client>((Collection<Client>) repository.findByNameIgnoreCaseContaining(name));
 	}
 
 	// TODO: implement pagination
 	@Override
 	public List<Client> getAll() {
-		return Lists.newArrayList((Client) repository.findAll() );
+		Collection<Client> clients = (Collection<Client>) repository.findAll();
+		return new ArrayList<Client>(clients);
 	}
 
 }

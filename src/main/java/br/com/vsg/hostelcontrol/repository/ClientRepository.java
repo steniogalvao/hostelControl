@@ -4,11 +4,10 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import br.com.vsg.hostelcontrol.model.Client;
-import br.com.vsg.hostelcontrol.model.Person;
 
 @Repository
-public interface ClientRepository extends CrudRepository<Person, Integer> {
+public interface ClientRepository extends CrudRepository<Client, Integer> {
 
-	Client findByName( String name );
+	Client findByNameIgnoreCaseContaining( String name );
 
 }

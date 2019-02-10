@@ -14,7 +14,7 @@ public interface ClientService {
 
 	Client get( int id );
 
-	Client getByName( String name );
+	List<Client> nameLike( String name );
 
 	List<Client> getAll();
 
