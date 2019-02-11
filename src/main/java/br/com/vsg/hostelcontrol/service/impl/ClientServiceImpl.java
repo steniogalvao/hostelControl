@@ -32,13 +32,14 @@ public class ClientServiceImpl implements ClientService {
 	}
 
 	@Override
-	public boolean delete(int id) {
-		Client client = get(id);
-		if (client != null) {
-			repository.delete(client);
-			return true;
+	public void delete(int id) {
+		Optional<Client> opt = repository.findById(id);
+		if (opt.isPresent()) {
+			opt.get().setActive(false);
+			repository.save(opt.get());
+		}else {
+			//TODO throw not found
 		}
-		return false;
 	}
 
 	@Override

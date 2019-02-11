@@ -5,13 +5,14 @@ import java.time.LocalDate;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.validation.constraints.NotEmpty;
 
 import br.com.vsg.hostelcontrol.enums.EmployeeTypeEnum;
 
 @Entity
 public class Employee extends Person {
 
-	@Enumerated( EnumType.STRING )
+	@Enumerated(EnumType.STRING)
 	private EmployeeTypeEnum type;
 	private LocalDate startDate;
 
@@ -19,7 +20,7 @@ public class Employee extends Person {
 		return type;
 	}
 
-	public void setType( EmployeeTypeEnum type ) {
+	public void setType(EmployeeTypeEnum type) {
 		this.type = type;
 	}
 
@@ -27,7 +28,7 @@ public class Employee extends Person {
 		return startDate;
 	}
 
-	public void setStartDate( LocalDate startDate ) {
+	public void setStartDate(LocalDate startDate) {
 		this.startDate = startDate;
 	}
 

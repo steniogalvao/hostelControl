@@ -10,7 +10,7 @@ public interface ClientService {
 
 	Client update( Client client );
 
-	boolean delete( int id );
+	void delete( int id );
 
 	Client get( int id );
 

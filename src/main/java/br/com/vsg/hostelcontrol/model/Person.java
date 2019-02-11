@@ -31,12 +31,13 @@ public abstract class Person {
 	@NotBlank
 	private String email;
 	private LocalDate birthday;
+	private boolean active;
 
 	public int getId() {
 		return id;
 	}
 
-	public void setId( int id ) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -44,7 +45,7 @@ public abstract class Person {
 		return name;
 	}
 
-	public void setName( String name ) {
+	public void setName(String name) {
 		this.name = name;
 	}
 
@@ -52,7 +53,7 @@ public abstract class Person {
 		return surname;
 	}
 
-	public void setSurname( String surname ) {
+	public void setSurname(String surname) {
 		this.surname = surname;
 	}
 
@@ -60,7 +61,7 @@ public abstract class Person {
 		return address;
 	}
 
-	public void setAddress( Address address ) {
+	public void setAddress(Address address) {
 		this.address = address;
 	}
 
@@ -68,7 +69,7 @@ public abstract class Person {
 		return passport;
 	}
 
-	public void setPassport( String passport ) {
+	public void setPassport(String passport) {
 		this.passport = passport;
 	}
 
@@ -76,7 +77,7 @@ public abstract class Person {
 		return cpf;
 	}
 
-	public void setCpf( String cpf ) {
+	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
 
@@ -84,7 +85,7 @@ public abstract class Person {
 		return email;
 	}
 
-	public void setEmail( String email ) {
+	public void setEmail(String email) {
 		this.email = email;
 	}
 
@@ -92,13 +93,23 @@ public abstract class Person {
 		return birthday;
 	}
 
-	public void setBirthday( LocalDate birthday ) {
+	public void setBirthday(LocalDate birthday) {
 		this.birthday = birthday;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 
 	@Override
 	public String toString() {
-		return "Person [id=" + id + ", name=" + name + ", surname=" + surname + ", address=" + address + ", passport=" + passport + ", cpf=" + cpf + ", email=" + email + ", birthday=" + birthday + "]";
+		return "Person [id=" + id + ", name=" + name + ", surname=" + surname + ", address=" + address + ", passport="
+				+ passport + ", cpf=" + cpf + ", email=" + email + ", birthday=" + birthday + ", active=" + active
+				+ "]";
 	}
 
 }
