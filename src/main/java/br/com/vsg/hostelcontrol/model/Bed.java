@@ -3,7 +3,7 @@ package br.com.vsg.hostelcontrol.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-
+import javax.validation.constraints.NotBlank;
 
 /**
  * Bed that the hostel have
@@ -14,14 +14,16 @@ public class Bed {
 	@GeneratedValue
 	@Id
 	private int id;
+	@NotBlank
 	private String name;
 	private String description;
+	private boolean active = true;
 
 	public int getId() {
 		return id;
 	}
 
-	public void setId( int id ) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -29,7 +31,7 @@ public class Bed {
 		return name;
 	}
 
-	public void setName( String name ) {
+	public void setName(String name) {
 		this.name = name;
 	}
 
@@ -37,13 +39,21 @@ public class Bed {
 		return description;
 	}
 
-	public void setDescription( String description ) {
+	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 
 	@Override
 	public String toString() {
-		return "Bed [id=" + id + ", name=" + name + ", description=" + description + "]";
+		return "Bed [id=" + id + ", name=" + name + ", description=" + description + ", active=" + active + "]";
 	}
 
 }
