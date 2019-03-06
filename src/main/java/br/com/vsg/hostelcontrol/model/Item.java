@@ -1,11 +1,20 @@
 package br.com.vsg.hostelcontrol.model;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
 public class Item {
@@ -13,10 +22,25 @@ public class Item {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
 	private int id;
-	private String name;
-	private String description;
-	private BigDecimal price;
-	private int quantity;
+
+	private long barcode;
+
+	@NotNull
+	private BigDecimal buyPrice;
+
+	@NotNull
+	private LocalDate expirationDate;
+
+	@NotNull
+	@ManyToOne
+	private ItemType itemType;
+
+	@Column(updatable = false)
+	@CreationTimestamp
+	private LocalDateTime creationTime;
+
+	@UpdateTimestamp
+	private LocalDateTime updateTime;
 
 	public int getId() {
 		return id;
@@ -26,42 +50,43 @@ public class Item {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public long getBarcode() {
+		return barcode;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setBarcode(long barcode) {
+		this.barcode = barcode;
 	}
 
-	public String getDescription() {
-		return description;
+	public BigDecimal getBuyPrice() {
+		return buyPrice;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setBuyPrice(BigDecimal buyPrice) {
+		this.buyPrice = buyPrice;
 	}
 
-	public BigDecimal getPrice() {
-		return price;
+	public LocalDate getExpirationDate() {
+		return expirationDate;
 	}
 
-	public void setPrice(BigDecimal price) {
-		this.price = price;
+	public void setExpirationDate(LocalDate expirationDate) {
+		this.expirationDate = expirationDate;
 	}
 
-	public int getQuantity() {
-		return quantity;
+	public ItemType getItemType() {
+		return itemType;
 	}
 
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
+	public void setItemType(ItemType itemType) {
+		this.itemType = itemType;
 	}
 
 	@Override
 	public String toString() {
-		return "Item [id=" + id + ", name=" + name + ", description=" + description + ", price=" + price + ", quantity="
-				+ quantity + "]";
+		return "Item [id=" + id + ", barcode=" + barcode + ", buyPrice=" + buyPrice + ", expirationDate="
+				+ expirationDate + ", ItemType=" + itemType + ", creationTime=" + creationTime + ", updateTime="
+				+ updateTime + "]";
 	}
 
 }

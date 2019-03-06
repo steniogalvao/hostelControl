@@ -10,23 +10,25 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-
 @Entity
 public class Bill {
 
 	@Id
 	@GeneratedValue
 	private int id;
+
 	private LocalDateTime time;
+
 	@OneToMany
 	private List<ItemBill> itens = new ArrayList<>();
+
 	private BigDecimal value;
 
 	public int getId() {
 		return id;
 	}
 
-	public void setId( int id ) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -34,7 +36,7 @@ public class Bill {
 		return time;
 	}
 
-	public void setTime( LocalDateTime time ) {
+	public void setTime(LocalDateTime time) {
 		this.time = time;
 	}
 
@@ -42,7 +44,7 @@ public class Bill {
 		return itens;
 	}
 
-	public void setItens( List<ItemBill> itens ) {
+	public void setItens(List<ItemBill> itens) {
 		this.itens = itens;
 	}
 
@@ -50,7 +52,7 @@ public class Bill {
 		return value;
 	}
 
-	public void setValue( BigDecimal value ) {
+	public void setValue(BigDecimal value) {
 		this.value = value;
 	}
 

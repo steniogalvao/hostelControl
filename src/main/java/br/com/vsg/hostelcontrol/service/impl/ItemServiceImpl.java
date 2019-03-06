@@ -59,4 +59,11 @@ public class ItemServiceImpl implements ItemService {
 		return new ArrayList<Item>(collection);
 	}
 
+	@Override
+	public Item findItemByItemTypeName(String itemTypeName) {
+		return null;
+	}
+	
+	
+
 }

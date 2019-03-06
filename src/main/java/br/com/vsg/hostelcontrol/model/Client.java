@@ -25,7 +25,7 @@ public class Client extends Person {
 		return ocupation;
 	}
 
-	public void setOcupation( String ocupation ) {
+	public void setOcupation(String ocupation) {
 		this.ocupation = ocupation;
 	}
 
@@ -33,7 +33,7 @@ public class Client extends Person {
 		return social;
 	}
 
-	public void setSocial( Map<String, String> social ) {
+	public void setSocial(Map<String, String> social) {
 		this.social = social;
 	}
 
@@ -41,7 +41,7 @@ public class Client extends Person {
 		return invoice;
 	}
 
-	public void setInvoice( Invoice invoice ) {
+	public void setInvoice(Invoice invoice) {
 		this.invoice = invoice;
 	}
 
@@ -49,13 +49,14 @@ public class Client extends Person {
 		return reservations;
 	}
 
-	public void setReservations( List<Reservation> reservations ) {
+	public void setReservations(List<Reservation> reservations) {
 		this.reservations = reservations;
 	}
 
 	@Override
 	public String toString() {
-		return "Client [ocupation=" + ocupation + ", social=" + social + ", invoice=" + invoice + ", reservations=" + reservations + "]";
+		return "Client [ocupation=" + ocupation + ", social=" + social + ", invoice=" + invoice + ", reservations="
+				+ reservations + "]";
 	}
 
 }

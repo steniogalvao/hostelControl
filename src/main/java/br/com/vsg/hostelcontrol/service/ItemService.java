@@ -15,5 +15,7 @@ public interface ItemService {
 	void delete(int id);
 
 	List<Item> getAll();
+	
+	Item findItemByItemTypeName(String itemTypeName);
 
 }

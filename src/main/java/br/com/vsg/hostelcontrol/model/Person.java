@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import javax.persistence.CascadeType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -17,7 +18,7 @@ import javax.validation.constraints.NotNull;
 public abstract class Person {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@NotBlank
 	private String name;
@@ -103,13 +104,6 @@ public abstract class Person {
 
 	public void setActive(boolean active) {
 		this.active = active;
-	}
-
-	@Override
-	public String toString() {
-		return "Person [id=" + id + ", name=" + name + ", surname=" + surname + ", address=" + address + ", passport="
-				+ passport + ", cpf=" + cpf + ", email=" + email + ", birthday=" + birthday + ", active=" + active
-				+ "]";
 	}
 
 }
