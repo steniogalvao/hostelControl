@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -11,6 +12,11 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import br.com.vsg.hostelcontrol.enums.StandartItensEnum;
 
@@ -20,20 +26,37 @@ public class Reservation {
 	@Id
 	@GeneratedValue
 	private int id;
+
+	@NotNull
 	private LocalDateTime arrive;
+
 	private LocalDateTime departure;
+
 	@OneToMany
 	private List<DailyReport> dailyReport = new ArrayList<>();
-	@ElementCollection( targetClass = StandartItensEnum.class )
-	@Enumerated( EnumType.STRING )
+
+	@ElementCollection(targetClass = StandartItensEnum.class)
+	@Enumerated(EnumType.STRING)
 	private List<StandartItensEnum> responsabilities = new ArrayList<>();
+
 	private String travelReason;
+
+	@NotNull
+	@OneToOne
+	private Client client;
+
+	@Column(updatable = false)
+	@CreationTimestamp
+	private LocalDateTime creationTime;
+
+	@UpdateTimestamp
+	private LocalDateTime updateTime;
 
 	public int getId() {
 		return id;
 	}
 
-	public void setId( int id ) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -41,7 +64,7 @@ public class Reservation {
 		return arrive;
 	}
 
-	public void setArrive( LocalDateTime arrive ) {
+	public void setArrive(LocalDateTime arrive) {
 		this.arrive = arrive;
 	}
 
@@ -49,7 +72,7 @@ public class Reservation {
 		return departure;
 	}
 
-	public void setDeparture( LocalDateTime departure ) {
+	public void setDeparture(LocalDateTime departure) {
 		this.departure = departure;
 	}
 
@@ -57,7 +80,7 @@ public class Reservation {
 		return dailyReport;
 	}
 
-	public void setDailyReport( List<DailyReport> dailyReport ) {
+	public void setDailyReport(List<DailyReport> dailyReport) {
 		this.dailyReport = dailyReport;
 	}
 
@@ -65,7 +88,7 @@ public class Reservation {
 		return responsabilities;
 	}
 
-	public void setResponsabilities( List<StandartItensEnum> responsabilities ) {
+	public void setResponsabilities(List<StandartItensEnum> responsabilities) {
 		this.responsabilities = responsabilities;
 	}
 
@@ -73,13 +96,23 @@ public class Reservation {
 		return travelReason;
 	}
 
-	public void setTravelReason( String travelReason ) {
+	public void setTravelReason(String travelReason) {
 		this.travelReason = travelReason;
+	}
+
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
 	}
 
 	@Override
 	public String toString() {
-		return "Reservation [id=" + id + ", arrive=" + arrive + ", departure=" + departure + ", dailyReport=" + dailyReport + ", responsabilities=" + responsabilities + ", travelReason=" + travelReason + "]";
+		return "Reservation [id=" + id + ", arrive=" + arrive + ", departure=" + departure + ", dailyReport="
+				+ dailyReport + ", responsabilities=" + responsabilities + ", travelReason=" + travelReason
+				+ ", client=" + client + ", creationTime=" + creationTime + ", updateTime=" + updateTime + "]";
 	}
 
 }
