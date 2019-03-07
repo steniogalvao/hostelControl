@@ -5,10 +5,15 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
 public class Bill {
@@ -17,12 +22,20 @@ public class Bill {
 	@GeneratedValue
 	private int id;
 
-	private LocalDateTime time;
-
 	@OneToMany
 	private List<ItemBill> itens = new ArrayList<>();
 
 	private BigDecimal value;
+
+	@OneToOne
+	private Client client;
+
+	@Column(updatable = false)
+	@CreationTimestamp
+	private LocalDateTime creationTime;
+
+	@UpdateTimestamp
+	private LocalDateTime updateTime;
 
 	public int getId() {
 		return id;
@@ -30,14 +43,6 @@ public class Bill {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public LocalDateTime getTime() {
-		return time;
-	}
-
-	public void setTime(LocalDateTime time) {
-		this.time = time;
 	}
 
 	public List<ItemBill> getItens() {
@@ -58,7 +63,8 @@ public class Bill {
 
 	@Override
 	public String toString() {
-		return "Bill [id=" + id + ", time=" + time + ", itens=" + itens + ", value=" + value + "]";
+		return "Bill [id=" + id + ", itens=" + itens + ", value=" + value + ", creationTime=" + creationTime
+				+ ", updateTime=" + updateTime + "]";
 	}
 
 }
