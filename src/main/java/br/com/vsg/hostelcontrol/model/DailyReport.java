@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotNull;
 
 /**
  * Occurrences related to some reservation
@@ -16,16 +17,20 @@ public class DailyReport {
 	@Id
 	@GeneratedValue
 	private int id;
+	
 	@OneToOne
 	private Bed bed;
+
+	@NotNull
 	private LocalDate day;
+
 	private String description;
 
 	public int getId() {
 		return id;
 	}
 
-	public void setId( int id ) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -33,7 +38,7 @@ public class DailyReport {
 		return bed;
 	}
 
-	public void setBed( Bed bed ) {
+	public void setBed(Bed bed) {
 		this.bed = bed;
 	}
 
@@ -41,7 +46,7 @@ public class DailyReport {
 		return day;
 	}
 
-	public void setDay( LocalDate day ) {
+	public void setDay(LocalDate day) {
 		this.day = day;
 	}
 
@@ -49,7 +54,7 @@ public class DailyReport {
 		return description;
 	}
 
-	public void setDescription( String description ) {
+	public void setDescription(String description) {
 		this.description = description;
 	}
 
