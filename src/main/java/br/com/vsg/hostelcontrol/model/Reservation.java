@@ -12,7 +12,6 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -42,8 +41,8 @@ public class Reservation {
 	private String travelReason;
 
 	@NotNull
-	@OneToOne
-	private Client client;
+	@OneToMany
+	private List<Client> clients;
 
 	@Column(updatable = false)
 	@CreationTimestamp
@@ -100,19 +99,19 @@ public class Reservation {
 		this.travelReason = travelReason;
 	}
 
-	public Client getClient() {
-		return client;
+	public List<Client> getClients() {
+		return clients;
 	}
 
-	public void setClient(Client client) {
-		this.client = client;
+	public void setClients(List<Client> clients) {
+		this.clients = clients;
 	}
 
 	@Override
 	public String toString() {
 		return "Reservation [id=" + id + ", arrive=" + arrive + ", departure=" + departure + ", dailyReport="
 				+ dailyReport + ", responsabilities=" + responsabilities + ", travelReason=" + travelReason
-				+ ", client=" + client + ", creationTime=" + creationTime + ", updateTime=" + updateTime + "]";
+				+ ", clients=" + clients + ", creationTime=" + creationTime + ", updateTime=" + updateTime + "]";
 	}
 
 }
